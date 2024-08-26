@@ -1,0 +1,48 @@
+---
+import { Image } from 'astro:assets'
+
+interface Props {
+  user?: boolean
+  text: string[]
+  image?: string[]
+  offers?: {
+    product: string
+    price: number
+  }[]
+}
+
+const { user = false, text, image, offers } = Astro.props
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/*.{jpeg,jpg,png,gif}')
+
+---
+
+<div class={`flex flex-col ${user ? 'items-end' : ''} gap-y-2`}>
+  {image && (
+    <div class="flex gap-x-2">
+      {image.map((imageName) => {
+        const imagePath = `/src/assets/images/${imageName}`
+        if (!images[imagePath]) throw new Error(`"${imagePath}" was not found."`)
+        return (
+          <Image class="size-10 rounded-lg" src={images[imagePath]()} alt="Dog" />
+        )
+      })}
+    </div>
+  )}
+  {text.map((str) => (
+    <div class={`w-32 p-1.5 ${user ? 'bg-white rounded-br-sm shadow-sm' : 'bg-gray-200 rounded-bl-sm'} text-[.525rem] leading-snug rounded-lg`}>
+      <p class="text-violet-500">
+        {str}
+      </p>
+    </div>
+  ))}
+  {offers && offers.map(({ product, price }) => (
+    <div class={`w-[158px] py-2 pl-1.5 pr-3 ${user ? 'bg-white rounded-br-sm shadow-sm' : 'bg-gray-200 rounded-bl-sm'} text-[.525rem] leading-snug bg-gradient-to-r from-gradient-magenta to-gradient-violet rounded-lg`}>
+      <div class="flex items-center text-white">
+        <div class="size-3 mr-1.5 border border-gray-400 rounded-full"></div>
+        <div>{product}</div>
+        <div class="ml-auto font-bold text-[.75rem]">${price}</div>
+      </div>
+    </div>
+  ))}
+</div>

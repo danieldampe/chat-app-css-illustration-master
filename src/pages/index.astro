@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Mobile from '../components/Mobile.astro'
+import Attribution from '../components/Attribution.astro'
+---
+
+<Layout title="Frontend Mentor | Chat app CSS illustration">
+  <main class="relative w-full py-16 px-7 bg-gray-50 font-rubik overflow-hidden md:py-36">
+    <div class="absolute top-0 left-0 -translate-x-2/4 w-2/4 min-w-mobile h-[500px] bg-gradient-to-tr from-gradient-violet to-gradient-magenta rounded-b-full md:max-w-[630px] md:h-[690px] md:-translate-x-1/3" />
+    <div class="absolute bottom-0 right-0 translate-x-2/4 w-2/4 min-w-mobile h-[500px] bg-gray-100 rounded-t-full md:max-w-[630px] md:h-[690px] md:translate-x-1/3" />
+    <div class="relative flex flex-col gap-y-14 max-w-[812px] mx-auto lg:flex-row lg:items-center lg:gap-x-28 xl:translate-x-12">
+      <div class="[&>*]:mx-auto">
+        <Mobile />
+      </div>
+      <div class="space-y-7 text-center lg:text-left">
+        <h1 class="font-medium text-[2.5rem] leading-none text-purple-950">Simple booking</h1>
+        <p class="text-gray-400 leading-relaxed">Stay in touch with our dog walkers through the chat interface. This makes it easy to discuss arrangements and make bookings. Once the walk has been completed you can rate your walker and book again all through the chat.</p>
+      </div>
+    </div>
+    <Attribution />
+  </main>
+</Layout>
